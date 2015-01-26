@@ -23,9 +23,7 @@ import com.googlecode.mp4parser.authoring.tracks.AppendTrack;
 import com.googlecode.mp4parser.authoring.tracks.CroppedTrack;
 import com.googlecode.mp4parser.util.Matrix;
 
-/**
- * Created by kevenwu on 13-7-18.
- */
+
 public class MP4ParserUtil {
     private static final String TAG = "MP4ParserUtil";
 

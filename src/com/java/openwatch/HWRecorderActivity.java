@@ -43,8 +43,6 @@ public class HWRecorderActivity extends Activity {
         setContentView(R.layout.activity_hwrecorder);
         glSurfaceView = (GLSurfaceView) findViewById(R.id.glSurfaceView);
         glSurfaceView.setRenderer(glSurfaceViewRenderer);
-        int ori = MP4ParserUtil.getVideoOrientation("/sdcard/wrongori.mp4");
-        Log.e("Chris","--------ori = " + ori);
         
     }
 
