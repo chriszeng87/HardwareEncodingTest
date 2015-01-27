@@ -50,7 +50,7 @@ public class VideoEncoderCore {
     private MediaMuxer mMuxer;
     private MediaCodec mVideoEncoder;
     private MediaCodec.BufferInfo mBufferInfo;
-    private int mTrackIndex;
+    private int mVideoTrackIndex;
     private boolean mMuxerStarted;
 
 
@@ -89,7 +89,7 @@ public class VideoEncoderCore {
         mMuxer = new MediaMuxer(outputFile.toString(),
                 MediaMuxer.OutputFormat.MUXER_OUTPUT_MPEG_4);
 
-        mTrackIndex = -1;
+        mVideoTrackIndex = -1;
         mMuxerStarted = false;
     }
 
@@ -160,7 +160,7 @@ public class VideoEncoderCore {
                 Log.d(TAG, "encoder output format changed: " + newFormat);
 
                 // now that we have the Magic Goodies, start the muxer
-                mTrackIndex = mMuxer.addTrack(newFormat);
+                mVideoTrackIndex = mMuxer.addTrack(newFormat);
                 mMuxer.start();
                 mMuxerStarted = true;
             } else if (encoderStatus < 0) {
@@ -190,7 +190,7 @@ public class VideoEncoderCore {
                     encodedData.position(mBufferInfo.offset);
                     encodedData.limit(mBufferInfo.offset + mBufferInfo.size);
 
-                    mMuxer.writeSampleData(mTrackIndex, encodedData, mBufferInfo);
+                    mMuxer.writeSampleData(mVideoTrackIndex, encodedData, mBufferInfo);
                     if (VERBOSE) {
                         Log.d(TAG, "sent " + mBufferInfo.size + " bytes to muxer, ts=" +
                                 mBufferInfo.presentationTimeUs);

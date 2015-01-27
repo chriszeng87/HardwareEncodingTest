@@ -79,7 +79,7 @@ public class ChunkedHWRecorder {
     private static final int VIDEO_HEIGHT = 480;
     private static final int FRAME_RATE = 30;               // 30fps
     private static final int IFRAME_INTERVAL = 5;           // 5 seconds between I-frames
-    private static final long CHUNK_DURATION_SEC = 1000;       // Duration of video chunks  hack:to be replaced
+    private static final long CHUNK_DURATION_SEC = 10;       // Duration of video chunks  hack:to be replaced
 
     // Display Surface
     private GLSurfaceView displaySurface;
@@ -407,28 +407,30 @@ public class ChunkedHWRecorder {
     public void sendAudioToEncoder(boolean endOfStream) {
         // send current frame data to encoder
         try {
-            ByteBuffer[] inputBuffers = mAudioEncoder.getInputBuffers();
-            int inputBufferIndex = mAudioEncoder.dequeueInputBuffer(-1);
-            if (inputBufferIndex >= 0) {
-                ByteBuffer inputBuffer = inputBuffers[inputBufferIndex];
-                inputBuffer.clear();
-                long presentationTimeNs = System.nanoTime();
-                int inputLength =  audioRecord.read(inputBuffer, SAMPLES_PER_FRAME );
-                presentationTimeNs -= (inputLength / SAMPLE_RATE ) / 1000000000;
-                if(inputLength == AudioRecord.ERROR_INVALID_OPERATION)
-                    Log.e(TAG, "Audio read error");
-
-                //long presentationTimeUs = (presentationTimeNs - startWhen) / 1000;
-                long presentationTimeUs = (presentationTimeNs - startWhen) / 1000;
-                if (VERBOSE) Log.i(TAG, "queueing " + inputLength + " audio bytes with pts " + presentationTimeUs);
-                if (endOfStream) {
-                    Log.i(TAG, "EOS received in sendAudioToEncoder");
-                    mAudioEncoder.queueInputBuffer(inputBufferIndex, 0, inputLength, presentationTimeUs, MediaCodec.BUFFER_FLAG_END_OF_STREAM);
-                    eosSentToAudioEncoder = true;
-                } else {
-                    mAudioEncoder.queueInputBuffer(inputBufferIndex, 0, inputLength, presentationTimeUs, 0);
-                }
-            }
+        	if (mAudioEncoder != null) {
+	            ByteBuffer[] inputBuffers = mAudioEncoder.getInputBuffers();
+	            int inputBufferIndex = mAudioEncoder.dequeueInputBuffer(-1);
+	            if (inputBufferIndex >= 0) {
+	                ByteBuffer inputBuffer = inputBuffers[inputBufferIndex];
+	                inputBuffer.clear();
+	                long presentationTimeNs = System.nanoTime();
+	                int inputLength =  audioRecord.read(inputBuffer, SAMPLES_PER_FRAME );
+	                presentationTimeNs -= (inputLength / SAMPLE_RATE ) / 1000000000;
+	                if(inputLength == AudioRecord.ERROR_INVALID_OPERATION)
+	                    Log.e(TAG, "Audio read error");
+	
+	                //long presentationTimeUs = (presentationTimeNs - startWhen) / 1000;
+	                long presentationTimeUs = (presentationTimeNs - startWhen) / 1000;
+	                if (VERBOSE) Log.i(TAG, "queueing " + inputLength + " audio bytes with pts " + presentationTimeUs);
+	                if (endOfStream) {
+	                    Log.i(TAG, "EOS received in sendAudioToEncoder");
+	                    mAudioEncoder.queueInputBuffer(inputBufferIndex, 0, inputLength, presentationTimeUs, MediaCodec.BUFFER_FLAG_END_OF_STREAM);
+	                    eosSentToAudioEncoder = true;
+	                } else {
+	                    mAudioEncoder.queueInputBuffer(inputBufferIndex, 0, inputLength, presentationTimeUs, 0);
+	                }
+	            }
+        	}
         } catch (Throwable t) {
             Log.e(TAG, "_offerAudioEncoder exception");
             t.printStackTrace();
@@ -650,14 +652,14 @@ public class ChunkedHWRecorder {
     private void chunkVideoEncoder(){
         stopAndReleaseVideoEncoder();
         // Start Encoder
-        mVideoBufferInfo = new MediaCodec.BufferInfo();
-        //mVideoTrackInfo = new TrackInfo();
-        advanceVideoMediaMuxer();
-        mVideoEncoder = MediaCodec.createEncoderByType(VIDEO_MIME_TYPE);
-        mVideoEncoder.configure(mVideoFormat, null, null, MediaCodec.CONFIGURE_FLAG_ENCODE);
-        mInputSurface.updateSurface(mVideoEncoder.createInputSurface());
-        mVideoEncoder.start();
-        mInputSurface.makeEncodeContextCurrent();
+//        mVideoBufferInfo = new MediaCodec.BufferInfo();
+//        //mVideoTrackInfo = new TrackInfo();
+//        advanceVideoMediaMuxer();
+//        mVideoEncoder = MediaCodec.createEncoderByType(VIDEO_MIME_TYPE);
+//        mVideoEncoder.configure(mVideoFormat, null, null, MediaCodec.CONFIGURE_FLAG_ENCODE);
+//        mInputSurface.updateSurface(mVideoEncoder.createInputSurface());
+//        mVideoEncoder.start();
+//        mInputSurface.makeEncodeContextCurrent();
     }
 
     private void advanceVideoMediaMuxer(){
@@ -698,13 +700,13 @@ public class ChunkedHWRecorder {
     private void chunkAudioEncoder(){
         stopAndReleaseAudioEncoder();
 
-        // Start Encoder
-        mAudioBufferInfo = new MediaCodec.BufferInfo();
-        //mVideoTrackInfo = new TrackInfo();
-        advanceAudioMediaMuxer();
-        mAudioEncoder = MediaCodec.createEncoderByType(AUDIO_MIME_TYPE);
-        mAudioEncoder.configure(mAudioFormat, null, null, MediaCodec.CONFIGURE_FLAG_ENCODE);
-        mAudioEncoder.start();
+//        // Start Encoder
+//        mAudioBufferInfo = new MediaCodec.BufferInfo();
+//        //mVideoTrackInfo = new TrackInfo();
+//        advanceAudioMediaMuxer();
+//        mAudioEncoder = MediaCodec.createEncoderByType(AUDIO_MIME_TYPE);
+//        mAudioEncoder.configure(mAudioFormat, null, null, MediaCodec.CONFIGURE_FLAG_ENCODE);
+//        mAudioEncoder.start();
     }
 
     private void advanceAudioMediaMuxer(){
@@ -776,6 +778,10 @@ public class ChunkedHWRecorder {
             if (VERBOSE) Log.d(TAG, "sending EOS to " + ((encoder == mVideoEncoder) ? "video" : "audio") + " encoder");
             encoder.signalEndOfInputStream();
             eosSentToVideoEncoder = true;
+        }
+        //TODO: stop the thread when received a stop message
+        if (encoder == null) {
+        	return;
         }
         //testing
         ByteBuffer[] encoderOutputBuffers = encoder.getOutputBuffers();
