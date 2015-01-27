@@ -267,9 +267,10 @@ public class CameraCaptureActivity extends Activity
         if (mCamera == null) {
             throw new RuntimeException("Unable to open camera");
         }
+        mCamera.setDisplayOrientation(90);
 
         Camera.Parameters parms = mCamera.getParameters();
-        parms.setRotation(180);
+//        parms.setRotation(180);
 
         CameraUtils.choosePreviewSize(parms, desiredWidth, desiredHeight);
 
