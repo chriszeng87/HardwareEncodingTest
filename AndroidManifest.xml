@@ -45,11 +45,6 @@
         <activity
             android:name="com.chris.java.openwatch.HWRecorderActivity"
             android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="com.chris.android.grafika.ReadPixelsActivity"
@@ -66,6 +61,11 @@
         <activity
             android:name="com.chris.android.grafika.CameraCaptureActivity"
             android:label="@string/title_activity_camera_capture" >
+                        <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name="com.chris.android.grafika.TextureViewGLActivity"

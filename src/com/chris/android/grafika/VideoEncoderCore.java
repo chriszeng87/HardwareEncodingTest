@@ -169,7 +169,6 @@ public class VideoEncoderCore {
                 // let's ignore it
             } else {
                 ByteBuffer encodedData = encoderOutputBuffers[encoderStatus];
-                Log.e("Chris","------------- encodedData.size() = " + mBufferInfo.size);
                 if (encodedData == null) {
                     throw new RuntimeException("encoderOutputBuffer " + encoderStatus +
                             " was null");
