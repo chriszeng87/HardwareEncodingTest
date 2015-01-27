@@ -19,21 +19,35 @@
 
 
 package com.java.openwatch;
-import android.content.Context;
-import android.graphics.SurfaceTexture;
-import android.hardware.Camera;
-import android.media.*;
-import android.opengl.*;
-import android.os.Trace;
-import android.util.Log;
-import android.view.Surface;
-
-import java.io.File;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.util.List;
+
+import android.content.Context;
+import android.graphics.SurfaceTexture;
+import android.hardware.Camera;
+import android.media.AudioFormat;
+import android.media.AudioRecord;
+import android.media.MediaCodec;
+import android.media.MediaCodecInfo;
+import android.media.MediaFormat;
+import android.media.MediaMuxer;
+import android.media.MediaRecorder;
+import android.opengl.EGL14;
+import android.opengl.EGLConfig;
+import android.opengl.EGLContext;
+import android.opengl.EGLDisplay;
+import android.opengl.EGLExt;
+import android.opengl.EGLSurface;
+import android.opengl.GLES11Ext;
+import android.opengl.GLES20;
+import android.opengl.GLSurfaceView;
+import android.opengl.Matrix;
+import android.os.Trace;
+import android.util.Log;
+import android.view.Surface;
 
 /**
  * Record video from the camera preview and encode it as an MP4 file.  Demonstrates the use
@@ -65,7 +79,7 @@ public class ChunkedHWRecorder {
     private static final int VIDEO_HEIGHT = 480;
     private static final int FRAME_RATE = 30;               // 30fps
     private static final int IFRAME_INTERVAL = 5;           // 5 seconds between I-frames
-    private static final long CHUNK_DURATION_SEC = 10;       // Duration of video chunks
+    private static final long CHUNK_DURATION_SEC = 1000;       // Duration of video chunks  hack:to be replaced
 
     // Display Surface
     private GLSurfaceView displaySurface;

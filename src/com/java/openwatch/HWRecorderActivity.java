@@ -2,31 +2,18 @@ package com.java.openwatch;
 
 
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
-
-import org.apache.http.client.HttpClient;
 
 import android.app.Activity;
 import android.opengl.EGL14;
 import android.opengl.EGLContext;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.android.grafika.MP4ParserUtil;
 import com.android.grafika.R;
 
 public class HWRecorderActivity extends Activity {
@@ -56,6 +43,7 @@ public class HWRecorderActivity extends Activity {
     public void onResume(){
         super.onResume();
         glSurfaceView.onResume();
+
     }
 
     public void onRunTestButtonClicked(View v){
@@ -80,6 +68,7 @@ public class HWRecorderActivity extends Activity {
     public void startChunkedHWRecorder() throws Throwable {
         chunkedHWRecorder = new ChunkedHWRecorder(getApplicationContext());
         chunkedHWRecorder.setDisplayEGLContext(context);
+//        chunkedHWRecorder.setDisplaySurface(glSurfaceView);
         ChunkedHWRecorderWrapper.runTest(chunkedHWRecorder);
     }
 
