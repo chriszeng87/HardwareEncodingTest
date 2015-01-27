@@ -22,9 +22,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".CameraCaptureActivity" >
+    tools:context=".grafika.CameraCaptureActivity" >
 
-    <com.android.grafika.AspectFrameLayout
+    <com.chris.android.grafika.AspectFrameLayout
         android:id="@+id/cameraPreview_afl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -39,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center" />
-    </com.android.grafika.AspectFrameLayout>
+    </com.chris.android.grafika.AspectFrameLayout>
 
     <Button
         android:id="@+id/toggleRecording_button"

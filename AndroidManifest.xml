@@ -16,7 +16,7 @@
 -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.android.grafika"
+    package="com.chris.android"
     android:versionCode="33"
     android:versionName="1.0" >
 
@@ -43,7 +43,7 @@
         <!-- android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar" > -->
         <!-- android:name="com.android.grafika.MainActivity" -->
         <activity
-            android:name="com.java.openwatch.HWRecorderActivity"
+            android:name="com.chris.java.openwatch.HWRecorderActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -52,31 +52,31 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.android.grafika.ReadPixelsActivity"
+            android:name="com.chris.android.grafika.ReadPixelsActivity"
             android:label="@string/title_activity_read_pixels" >
         </activity>
         <activity
-            android:name="com.android.grafika.PlayMovieActivity"
+            android:name="com.chris.android.grafika.PlayMovieActivity"
             android:label="@string/title_activity_play_movie" >
         </activity>
         <activity
-            android:name="com.android.grafika.LiveCameraActivity"
+            android:name="com.chris.android.grafika.LiveCameraActivity"
             android:label="@string/title_activity_live_camera" >
         </activity>
         <activity
-            android:name="com.android.grafika.CameraCaptureActivity"
+            android:name="com.chris.android.grafika.CameraCaptureActivity"
             android:label="@string/title_activity_camera_capture" >
         </activity>
         <activity
-            android:name="com.android.grafika.TextureViewGLActivity"
+            android:name="com.chris.android.grafika.TextureViewGLActivity"
             android:label="@string/title_activity_texture_view_gl" >
         </activity>
         <activity
-            android:name="com.android.grafika.TextureViewCanvasActivity"
+            android:name="com.chris.android.grafika.TextureViewCanvasActivity"
             android:label="@string/title_activity_texture_view_canvas" >
         </activity>
         <activity
-            android:name="com.android.grafika.RecordFBOActivity"
+            android:name="com.chris.android.grafika.RecordFBOActivity"
             android:label="@string/title_activity_record_fbo"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
 
@@ -88,59 +88,59 @@
             <!-- android:theme="@android:style/Theme.NoTitleBar.Fullscreen" -->
         </activity>
         <activity
-            android:name="com.android.grafika.ChorTestActivity"
+            android:name="com.chris.android.grafika.ChorTestActivity"
             android:label="@string/title_activity_chor_test" >
         </activity>
         <activity
-            android:name="com.android.grafika.DoubleDecodeActivity"
+            android:name="com.chris.android.grafika.DoubleDecodeActivity"
             android:label="@string/title_activity_double_decode" >
         </activity>
         <activity
-            android:name="com.android.grafika.ContinuousCaptureActivity"
+            android:name="com.chris.android.grafika.ContinuousCaptureActivity"
             android:label="@string/title_activity_continuous_capture" >
         </activity>
         <activity
-            android:name="com.android.grafika.SoftInputSurfaceActivity"
+            android:name="com.chris.android.grafika.SoftInputSurfaceActivity"
             android:label="@string/title_activity_soft_input_surface" >
         </activity>
         <activity
-            android:name="com.android.grafika.HardwareScalerActivity"
+            android:name="com.chris.android.grafika.HardwareScalerActivity"
             android:label="@string/title_activity_hardware_scaler"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
         <activity
-            android:name="com.android.grafika.GlesInfoActivity"
+            android:name="com.chris.android.grafika.GlesInfoActivity"
             android:label="@string/title_activity_gles_info" >
         </activity>
         <activity
-            android:name="com.android.grafika.PlayMovieSurfaceActivity"
+            android:name="com.chris.android.grafika.PlayMovieSurfaceActivity"
             android:label="@string/title_activity_play_movie_surface" >
         </activity>
         <activity
-            android:name="com.android.grafika.MultiSurfaceActivity"
+            android:name="com.chris.android.grafika.MultiSurfaceActivity"
             android:label="@string/title_activity_multi_surface_test"
             android:theme="@android:style/Theme.Holo" >
         </activity>
         <activity
-            android:name="com.android.grafika.CodecOpenActivity"
+            android:name="com.chris.android.grafika.CodecOpenActivity"
             android:label="@string/title_activity_codec_open" >
         </activity>
         <activity
-            android:name="com.android.grafika.TextureUploadActivity"
+            android:name="com.chris.android.grafika.TextureUploadActivity"
             android:label="@string/title_activity_texture_upload" >
         </activity>
         <activity
-            android:name="com.android.grafika.ColorBarActivity"
+            android:name="com.chris.android.grafika.ColorBarActivity"
             android:label="@string/title_color_bar"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
         <activity
-            android:name="com.android.grafika.ScheduledSwapActivity"
+            android:name="com.chris.android.grafika.ScheduledSwapActivity"
             android:label="@string/title_scheduled_swap"
             android:theme="@android:style/Theme.Black" >
         </activity>
         <activity
-            android:name="com.android.grafika.TextureFromCameraActivity"
+            android:name="com.chris.android.grafika.TextureFromCameraActivity"
             android:label="@string/title_texture_from_camera"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
