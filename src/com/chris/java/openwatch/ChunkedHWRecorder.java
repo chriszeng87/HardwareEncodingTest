@@ -204,7 +204,6 @@ public class ChunkedHWRecorder {
         private void restart(int format, int chunk){
             stop();
             try {
-            	Log.e("Chris","--------------------restart chunk = " + chunk);
                 muxer = new MediaMuxer(outputPathForChunk(chunk), format);
             } catch (IOException e) {
                 throw new RuntimeException("MediaMuxer creation failed", e);
@@ -686,7 +685,6 @@ public class ChunkedHWRecorder {
         }else{
             // if encoders are separate, finalize this muxer, and switch to others
             Log.i("advanceVideo", "encoders on diff muxers. restarting");
-            Log.e("Chris","------------------------ video media muxer restart");
             mVideoTrackInfo.muxerWrapper.restart(OUTPUT_FORMAT, leadingChunk + 1); // prepare muxer for next chunk, but don't alter leadingChunk
             mVideoTrackInfo.muxerWrapper = mAudioTrackInfo.muxerWrapper;
         }
@@ -729,7 +727,6 @@ public class ChunkedHWRecorder {
         }else{
             // if encoders are separate, finalize this muxer, and switch to others
             Log.i("advanceAudio", "encoders on diff muxers. restarting");
-            Log.e("Chris","------------------------ audio media muxer restart");
             mAudioTrackInfo.muxerWrapper.restart(OUTPUT_FORMAT, leadingChunk + 1); // prepare muxer for next chunk, but don't alter leadingChunk
             mAudioTrackInfo.muxerWrapper = mVideoTrackInfo.muxerWrapper;
         }
