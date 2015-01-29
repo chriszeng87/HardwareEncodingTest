@@ -51,7 +51,7 @@ public class VideoEncoderCore {
     private static final String VIDEO_MIME_TYPE = "video/avc";    // H.264 Advanced Video Coding
     private static final String AUDIO_MIME_TYPE = "audio/mp4a-latm";    // H.264 Advanced Video Coding
     private static final int FRAME_RATE = 30;               // 30fps
-    private static final int IFRAME_INTERVAL = 5;           // 5 seconds between I-frames
+    private static final int IFRAME_INTERVAL = 1;           // 5 seconds between I-frames
 
     private Surface mInputSurface;
     private MediaMuxer mMuxer;
@@ -197,7 +197,8 @@ public class VideoEncoderCore {
 	                    Log.e(TAG, "Audio read error");
 	
 	                //long presentationTimeUs = (presentationTimeNs - startWhen) / 1000;
-	                long presentationTimeUs = (presentationTimeNs - startWhen) / 1000;
+	                long presentationTimeUs = (presentationTimeNs - startWhen) 
+	                		/ 1000;
 	                if (VERBOSE) Log.i(TAG, "queueing " + inputLength + " audio bytes with pts " + presentationTimeUs);
 	                if (endOfStream) {
 	                    Log.i(TAG, "EOS received in sendAudioToEncoder");
@@ -276,6 +277,10 @@ public class VideoEncoderCore {
         
         startWhen = System.nanoTime();
 
+    }
+    
+    public long getStartWhen() {
+    	return startWhen;
     }
 
     /**
