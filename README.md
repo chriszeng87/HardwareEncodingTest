@@ -6,5 +6,5 @@ Now there are full of bugs.
 
 
 To do list:  
-1. Scale the video when recording  
-2. Record audio in CameraCaptureActivity
+1. Blurred screen 
+2. Wrong audio and video timestamp 
