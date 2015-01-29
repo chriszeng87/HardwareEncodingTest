@@ -147,7 +147,6 @@ public class VideoEncoderCore {
         // the raw H.264 elementary stream we get from MediaCodec into a .mp4 file.
         mMuxer = new MediaMuxer(outputFile.toString(),
                 MediaMuxer.OutputFormat.MUXER_OUTPUT_MPEG_4);
-        Log.e("Chris","-------------- mMuxer inited outputFile = " + outputFile.toString());
 
         mAudioTrackIndex = -1;
         mVideoTrackIndex = -1;
@@ -323,7 +322,6 @@ public class VideoEncoderCore {
                 MediaFormat newFormat = mVideoEncoder.getOutputFormat();
                 Log.d(TAG, "encoder output format changed: " + newFormat);
 
-                Log.e("Chris","--------------add video track");
                 // now that we have the Magic Goodies, start the muxer
                 mVideoTrackIndex = mMuxer.addTrack(newFormat);
 //                mMuxer.start();
@@ -332,7 +330,6 @@ public class VideoEncoderCore {
                 if(numTracksAdded.get() == TOTAL_NUM_TRACKS){
 //                    if (VERBOSE) Log.i(TAG, "All tracks added, starting " + ((this == mMuxerWrapper) ? "muxer1" : "muxer2") +"!");
                     mMuxer.start();
-                    Log.e("Chris","--------------muxer started");
                     started = true;
                 }
                 
@@ -373,7 +370,6 @@ public class VideoEncoderCore {
 	                    encodedData.limit(mVideoBufferInfo.offset + mVideoBufferInfo.size);
 	
 	                    mMuxer.writeSampleData(mVideoTrackIndex, encodedData, mVideoBufferInfo);
-                        Log.e("Chris","---------------write video data");
 	                    if (VERBOSE) {
 	                        Log.d(TAG, "sent " + mVideoBufferInfo.size + " bytes to muxer, ts=" +
 	                                mVideoBufferInfo.presentationTimeUs);
@@ -387,7 +383,6 @@ public class VideoEncoderCore {
                     if (!endOfStream) {
                         Log.w(TAG, "reached end of stream unexpectedly");
                     } else {
-                    	Log.e("Chris","------------ stop from audio");
                     	finishTrack();
                         if (VERBOSE) Log.d(TAG, "end of stream reached");
                     }
@@ -456,7 +451,6 @@ public class VideoEncoderCore {
 //                    else if(encoder == mAudioEncoder)
 //                        mAudioOutputFormat = newFormat;
 
-                    Log.e("Chris","--------------add audio track");
                     // now that we have the Magic Goodies, start the muxer
                     mAudioTrackIndex = mMuxer.addTrack(newFormat);
                     numTracksAdded.incrementAndGet();
@@ -505,7 +499,6 @@ public class VideoEncoderCore {
                         	mAudioBufferInfo.presentationTimeUs = 0;
                         }
                         mMuxer.writeSampleData(mAudioTrackIndex, encodedData, mAudioBufferInfo);
-                        Log.e("Chris","---------------write audio data");
 
 //                        if (VERBOSE)
 //                            Log.d(TAG, "sent " + bufferInfo.size + ((encoder == mVideoEncoder) ? " video" : " audio") + " bytes to muxer with pts " + bufferInfo.presentationTimeUs);
@@ -519,7 +512,6 @@ public class VideoEncoderCore {
                     if (!endOfStream) {
                         Log.w(TAG, "reached end of stream unexpectedly");
                     } else {
-                    	Log.e("Chris","------------ stop from audio");
                         finishTrack();
 //                        if (VERBOSE) Log.d(TAG, "end of " + ((encoder == mVideoEncoder) ? " video" : " audio") + " stream reached. ");
                         if(!fullStopReceived){
@@ -584,7 +576,6 @@ public class VideoEncoderCore {
         numTracksFinished.getAndIncrement();
         if(numTracksFinished.get() == TOTAL_NUM_TRACKS){
 //            if (VERBOSE) Log.i(TAG, "All tracks finished, stopping " + ((this == mMuxerWrapper) ? "muxer1" : "muxer2") + "!");
-            Log.e("Chris","------------finishTrack");
         	stopMuxer();
         }
 

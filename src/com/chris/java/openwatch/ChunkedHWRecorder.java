@@ -151,7 +151,6 @@ public class ChunkedHWRecorder {
 
         public MediaMuxerWrapper(int format, int chunk){
             this.chunk = chunk;
-            Log.e("Chris","---------------- MediaMuxerWrapper chunk = " + chunk);
             restart(format, chunk);
         }
 
@@ -247,7 +246,6 @@ public class ChunkedHWRecorder {
 
 //            File outputHq = FileUtils.createTempFileInRootAppStorage(c, "hq.mp4");
 //            if (TRACE) Trace.beginSection("startMediaRecorder");
-//            Log.e("Chris","------------ outputHq.getAbsolutePath() = " +  outputHq.getAbsolutePath());
 //            if (useMediaRecorder) mMediaRecorderWrapper = new MediaRecorderWrapper(c, outputHq.getAbsolutePath(), mCamera);
             startAudioRecord();
 //            if (useMediaRecorder) mMediaRecorderWrapper.startRecording();
