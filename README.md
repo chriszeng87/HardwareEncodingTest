@@ -12,4 +12,5 @@ To do list:
   
 Reference project:  
 1. Google's grafika project  
-2. Google's CTS code
+2. Google's CTS code  
+3. OnlyInAmerica's project https://github.com/OnlyInAmerica/HWEncoderExperiments
