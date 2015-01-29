@@ -11,5 +11,5 @@ To do list:
 3. Compatibility Test  
   
 Reference project:  
-1. Google's grafika
+1. Google's grafika project  
 2. Google's CTS code
