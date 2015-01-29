@@ -311,6 +311,7 @@ public class TextureMovieEncoder implements Runnable {
         mFrameNum = 0;
         prepareEncoder(config.mEglContext, config.mWidth, config.mHeight, config.mBitRate,
                 config.mOutputFile);
+        mVideoEncoder.startAudioRecord();
     }
 
     /**
@@ -324,6 +325,7 @@ public class TextureMovieEncoder implements Runnable {
      */
     private void handleFrameAvailable(float[] transform, long timestampNanos) {
         if (VERBOSE) Log.d(TAG, "handleFrameAvailable tr=" + transform);
+        mVideoEncoder.setFrameAvailable();
         mVideoEncoder.drainEncoder(false);
         mFullScreen.drawFrame(mTextureId, transform);
 
@@ -339,6 +341,7 @@ public class TextureMovieEncoder implements Runnable {
     private void handleStopRecording() {
         Log.d(TAG, "handleStopRecording");
         mVideoEncoder.drainEncoder(true);
+        mVideoEncoder.stopRecording();
         releaseEncoder();
 //        long startTime = System.currentTimeMillis();
 //        MP4ParserUtil.rotateVideo("/sdcard/camera-test.mp4", "/sdcard/camera-test2.mp4", 90);
@@ -391,6 +394,7 @@ public class TextureMovieEncoder implements Runnable {
 
         mFullScreen = new FullFrameRect(
                 new Texture2dProgram(Texture2dProgram.ProgramType.TEXTURE_EXT));
+        
     }
 
     private void releaseEncoder() {

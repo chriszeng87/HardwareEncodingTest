@@ -73,7 +73,7 @@ public class ChunkedHWRecorder {
     private static String OUTPUT_DIR = "/sdcard/HWEncodingExperiments/";
     // parameters for the encoder
     private static final String VIDEO_MIME_TYPE = "video/avc";    // H.264 Advanced Video Coding
-    private static final String AUDIO_MIME_TYPE = "audio/mp4a-latm";    // H.264 Advanced Video Coding
+    private static final String AUDIO_MIME_TYPE = "mp4a-latm";    // H.264 Advanced Video Coding
     private static final int OUTPUT_FORMAT = MediaMuxer.OutputFormat.MUXER_OUTPUT_MPEG_4;
     private static final int VIDEO_WIDTH = 640;
     private static final int VIDEO_HEIGHT = 480;
@@ -205,7 +205,7 @@ public class ChunkedHWRecorder {
         private void restart(int format, int chunk){
             stop();
             try {
-            	Log.e("Chris","-------------------- chunk = " + chunk);
+            	Log.e("Chris","--------------------restart chunk = " + chunk);
                 muxer = new MediaMuxer(outputPathForChunk(chunk), format);
             } catch (IOException e) {
                 throw new RuntimeException("MediaMuxer creation failed", e);
@@ -801,7 +801,6 @@ public class ChunkedHWRecorder {
                 encoderOutputBuffers = encoder.getOutputBuffers();
             } else if (encoderStatus == MediaCodec.INFO_OUTPUT_FORMAT_CHANGED) {
                 // should happen before receiving buffers, and should only happen once
-
                 if (muxerWrapper.started) {
                     //Log.e(TAG, "format changed after muxer start! Can we ignore?");
                     //throw new RuntimeException("format changed after muxer start");
