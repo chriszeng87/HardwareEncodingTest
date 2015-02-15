@@ -20,7 +20,6 @@ public class HWRecorderActivity extends Activity {
 
     GLSurfaceView glSurfaceView;
     GlSurfaceViewRenderer glSurfaceViewRenderer = new GlSurfaceViewRenderer();
-	private final float[] mTransformMatrix = new float[16];
 
     protected void onCreate (Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -130,10 +129,7 @@ public class HWRecorderActivity extends Activity {
 
         @Override
         public void onDrawFrame(GL10 gl) {
-//        	glSurfaceView.getTransformMatrix(mTransformMatrix);
-//			if (mPreviewFilter != null) {
-//				mPreviewFilter.nativeUpdateMatrix(mTransformMatrix);
-//			}
+
         }
     }
 

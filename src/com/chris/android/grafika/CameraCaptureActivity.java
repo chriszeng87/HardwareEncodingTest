@@ -20,6 +20,7 @@ import android.opengl.EGL14;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -148,8 +149,7 @@ public class CameraCaptureActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera_capture);
 
-//        File outputFile = new File(getFilesDir(), "camera-test.mp4");
-        File outputFile = new File("/sdcard/camera-test.mp4");
+        File outputFile = new File(Environment.getExternalStorageDirectory(), "camera-test.mp4");
         TextView fileText = (TextView) findViewById(R.id.cameraOutputFile_text);
         fileText.setText(outputFile.toString());
 
@@ -250,11 +250,11 @@ public class CameraCaptureActivity extends Activity
 
         Camera.CameraInfo info = new Camera.CameraInfo();
 
-        // Try to find a front-facing camera (e.g. for videoconferencing).
+        // Try to find a back-facing camera (e.g. for videoconferencing).
         int numCameras = Camera.getNumberOfCameras();
         for (int i = 0; i < numCameras; i++) {
             Camera.getCameraInfo(i, info);
-//            if (info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
+//            if (info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {  //TODO: front facing
             if (info.facing == Camera.CameraInfo.CAMERA_FACING_BACK) {
                 mCamera = Camera.open(i);
                 break;
@@ -267,7 +267,7 @@ public class CameraCaptureActivity extends Activity
         if (mCamera == null) {
             throw new RuntimeException("Unable to open camera");
         }
-        mCamera.setDisplayOrientation(90);
+        mCamera.setDisplayOrientation(90); //TODO: set according to front or back facing
 
         Camera.Parameters parms = mCamera.getParameters();
 //        parms.setRotation(180);
@@ -657,8 +657,7 @@ class CameraSurfaceRenderer implements GLSurfaceView.Renderer {
                     // start recording
                     mVideoEncoder.startRecording(new TextureMovieEncoder.EncoderConfig(
                             mOutputFile, 480, 480, 1000000, EGL14.eglGetCurrentContext()));
-//                    400000
-//                    1000000
+                    //TODO: get optimal width and height according to specified devices
                     mRecordingStatus = RECORDING_ON;
                     break;
                 case RECORDING_RESUMED:
