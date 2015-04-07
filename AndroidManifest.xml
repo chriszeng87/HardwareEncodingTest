@@ -122,10 +122,6 @@
             android:theme="@android:style/Theme.Holo" >
         </activity>
         <activity
-            android:name="com.chris.android.grafika.CodecOpenActivity"
-            android:label="@string/title_activity_codec_open" >
-        </activity>
-        <activity
             android:name="com.chris.android.grafika.TextureUploadActivity"
             android:label="@string/title_activity_texture_upload" >
         </activity>
