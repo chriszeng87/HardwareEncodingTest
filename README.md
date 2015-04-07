@@ -1,4 +1,4 @@
-HardwareTest
+Video Recording with Hardware Encoding Test
 
 
 A test project for recording video and audio with hardware encoding in Android platform. 
