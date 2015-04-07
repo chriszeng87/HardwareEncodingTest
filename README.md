@@ -11,6 +11,6 @@ To do list:
 3. Compatibility Test  
   
 Reference project:  
-1. Google's grafika project  https://github.com/google/grafika
-2. Google's CTS code  
+1. Google's grafika project  https://github.com/google/grafika  
+2. Google's CTS code    
 3. OnlyInAmerica's project https://github.com/OnlyInAmerica/HWEncoderExperiments
