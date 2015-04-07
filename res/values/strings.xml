@@ -19,7 +19,7 @@
 
     <!-- TODO: organize this a bit -->
 
-    <string name="app_name">Grafika</string>
+    <string name="app_name">HardwareEncodingTest</string>
     <string name="about_item">About</string>
     <string name="regenerateContent_item">Regenerate content</string>
     <string name="selectTest_text">Select Test:</string>
