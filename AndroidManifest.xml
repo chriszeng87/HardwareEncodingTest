@@ -63,6 +63,7 @@
             android:label="@string/title_activity_camera_capture" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -127,16 +128,6 @@
         <activity
             android:name="com.chris.android.grafika.TextureUploadActivity"
             android:label="@string/title_activity_texture_upload" >
-        </activity>
-        <activity
-            android:name="com.chris.android.grafika.ColorBarActivity"
-            android:label="@string/title_color_bar"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
-        </activity>
-        <activity
-            android:name="com.chris.android.grafika.ScheduledSwapActivity"
-            android:label="@string/title_scheduled_swap"
-            android:theme="@android:style/Theme.Black" >
         </activity>
         <activity
             android:name="com.chris.android.grafika.TextureFromCameraActivity"
