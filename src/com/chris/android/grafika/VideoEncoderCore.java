@@ -67,7 +67,6 @@ public class VideoEncoderCore {
     private MediaFormat mAudioFormat;
     
     // recording state
-//    private int leadingChunk = 1;
     long startWhen;
     int frameCount = 0;
     boolean eosSentToAudioEncoder = false;
@@ -244,7 +243,7 @@ public class VideoEncoderCore {
                         audioEosRequestedCopy = audioEosRequested; // make sure audioEosRequested doesn't change value mid loop
                         if (audioEosRequestedCopy || fullStopReceived){ // TODO post eosReceived message with Handler?
                             Log.i(TAG, "Audio loop caught audioEosRequested / fullStopReceived " + audioEosRequestedCopy + " " + fullStopReceived);
-//                            if (TRACE) Trace.beginSection("sendAudio");
+
                             sendAudioToEncoder(true);
 //                            if (TRACE) Trace.endSection();
                         }

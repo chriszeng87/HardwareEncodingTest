@@ -343,9 +343,6 @@ public class TextureMovieEncoder implements Runnable {
         mVideoEncoder.drainEncoder(true);
         mVideoEncoder.stopRecording();
         releaseEncoder();
-//        long startTime = System.currentTimeMillis();
-//        MP4ParserUtil.rotateVideo("/sdcard/camera-test.mp4", "/sdcard/camera-test2.mp4", 90);
-//        Log.e("Chris","------------ rotate cost = " + (System.currentTimeMillis() - startTime));
     }
 
     /**
